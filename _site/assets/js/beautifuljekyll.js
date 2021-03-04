@@ -53,9 +53,15 @@ var BeautifulJekyllJS = {
       // 2fc73a3a967e97599c9763d05e564189
       // set an initial image
       var imgInfo = BeautifulJekyllJS.getImgInfo();
+      var option;
       var src = imgInfo.src;
+      if(imgInfo.src.includes("$")){
+        option = imgInfo.src.split("$")[1].split("_");
+        src = imgInfo.src.split("$")[0];
+      }
       var desc = imgInfo.desc;
       BeautifulJekyllJS.setImg(src, desc);
+      if(option) $("header > .big-img").css(`${option[0]}`, `${option[1]}`);
 
       // For better UX, prefetch the next image so that it will already be loaded when we want to show it
       var getNextImg = function() {
