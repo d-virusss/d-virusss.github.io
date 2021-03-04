@@ -1,46 +1,149 @@
 <head>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if site.compass.author %}{{ site.compass.author }} &#8226; {% endif %}{{ site.compass.tagline | strip_html }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="apple-touch-icon" href="{{ site.baseurl }}{{ site.compass.logo }}"/>
-  <link rel="shortcut icon" sizes="16x16 24x24 32x32 48x48 64x64" href="{{ site.url }}{{ site.baseurl }}/favicon.ico" />
+  {% capture title %}
+    {%- if page.share-title -%}
+      {{ page.share-title | strip_html | xml_escape }}
+    {%- elsif page.title -%}
+      {{ page.title | strip_html | xml_escape  }}
+    {%- else -%}
+      {{ site.title | strip_html | xml_escape }}
+    {%- endif -%}
+  {% endcapture %}
 
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/normalize.css">
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
+  {% capture description %}
+    {%- if page.share-description -%}
+      {{ page.share-description | strip_html | xml_escape }}
+    {%- elsif page.subtitle -%}
+      {{ page.subtitle | strip_html | xml_escape }}
+    {%- else -%}
+      {%- assign excerpt_length = site.excerpt_length | default: 50 -%}
+      {{ page.content | strip_html | xml_escape | truncatewords: excerpt_length | strip }}
+    {%- endif -%}
+  {% endcapture %}
 
-  <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <title>{{ title }}</title>
 
-  <meta name="author" content="{{ site.compass.author }}">
-  <meta name="description" content="{{ site.compass.tagline }}"/>
+  {% if site.author %}
+  <meta name="author" content="{{ site.author }}">
+  {% endif %}
 
-  <!-- Open Graph tags -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="{{ site.compass.tagline }}"/>
-  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}"/>
-  <meta property="og:image" content="{{ site.url }}{{ site.baseurl }}{{ site.compass.logo }}"/>
-  <meta property="og:description" content="{{ site.compass.description }}"/>
-  <meta property="og:site_name" content="{{ site.compass.tagline }}">
+  <meta name="description" content="{{ description }}">
 
-  <!-- Twitter Card tags -->
+  {% if site.mobile-theme-col %}
+  <meta name="theme-color" content="{{ site.mobile-theme-col }}">
+  {% endif %}
+
+  {% if site.keywords %}
+  <meta name="keywords" content="{{ site.keywords }}">
+  {% endif %}
+
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | absolute_url }}">
+
+  {% include gtag.html %}
+  {% include gtm_head.html %}
+  {% include google_analytics.html %}
+
+  {% if layout.common-ext-css %}
+    {% for css in layout.common-ext-css %}
+      {% include ext-css.html css=css %}
+    {% endfor %}
+  {% endif %}
+
+  {% if layout.common-css %}
+    {% for css in layout.common-css %}
+      <link rel="stylesheet" href="{{ css | relative_url }}">
+    {% endfor %}
+  {% endif %}
+
+  {% if site.site-css %}
+    {% for css in site.site-css %}
+      <link rel="stylesheet" href="{{ css | relative_url }}">
+    {% endfor %}
+  {% endif %}
+
+  {% if page.ext-css %}
+    {% for css in page.ext-css %}
+      {% include ext-css.html css=css %}
+    {% endfor %}
+  {% endif %}
+  
+  {% if page.css %}
+    {% for css in page.css %}
+      <link rel="stylesheet" href="{{ css | relative_url }}">
+    {% endfor %}
+  {% endif %}
+
+  {% if site.fb_app_id %}
+  <meta property="fb:app_id" content="{{ site.fb_app_id }}">
+  {% endif %}
+
+  {% if site.title %}
+  <meta property="og:site_name" content="{{ site.title }}">
+  {% endif %}
+
+  {%- capture img -%}
+    {%- if page.share-img -%}
+      {{ page.share-img }}
+    {%- elsif page.cover-img -%}
+      {%- if page.cover-img.first -%}
+        {{ page.cover-img[0].first.first }}
+      {%- else -%}
+        {{ page.cover-img }}
+      {%- endif -%}
+    {%- elsif page.thumbnail-img -%}
+      {{ page.thumbnail-img }}
+    {%- elsif site.avatar -%}
+      {{ site.avatar }}
+    {% endif %}
+  {%- endcapture -%}
+  {%- assign img=img | strip -%}
+
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:description" content="{{ description }}">
+
+  {% if img != "" %}
+  <meta property="og:image" content="{{ img | absolute_url }}">
+  {% endif %}
+
+  {% if page.id %}
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="{{ site.author }}">
+  <meta property="og:article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  {% else %}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ page.url | absolute_url | strip_index }}">
+  <link rel="canonical" href="{{ page.url | absolute_url | strip_index }}">
+  {% endif %}
+
+  {% if img != "" and img != site.avatar %}
+  <meta name="twitter:card" content="summary_large_image">
+  {% else %}
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{{ site.compass.tagline }}">
-  {% if site.twitter.site %}
-  <meta name="twitter:site" content="{{ site.twitter.site }}">
   {% endif %}
-  {% if site.twitter.creator %}
-  <meta name="twitter:creator" content="{{ site.twitter.creator }}">
-  {% endif %}
-  <meta name="twitter:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-  <meta name="twitter:description" content="{{ site.compass.description }}">
-  <meta name="twitter:image:src" content="{{ site.url }}{{ site.baseurl }}{{ site.compass.logo }}">
+  <meta name="twitter:site" content="@{{ site.social-network-links.twitter }}">
+  <meta name="twitter:creator" content="@{{ site.social-network-links.twitter }}">
 
-  {% if site.compass.include_analytics %}
-  {% include analytics.html %}
+  <meta property="twitter:title" content="{{ title }}">
+  <meta property="twitter:description" content="{{ description }}">
+
+  {% if img != "" %}
+  <meta name="twitter:image" content="{{ img | absolute_url }}">
   {% endif %}
 
-<meta name="theme-color" content="#F1EED9">
+  {% include matomo.html %}
+
+  {% if page.comments and site.staticman.repository and site.staticman.branch %}
+  <link rel="stylesheet" href="{{ "/assets/css/staticman.css" | relative_url }}">
+  {% endif %}
+
+  {% if page.head-extra %}
+    {% for file in page.head-extra %}
+      {% include {{ file }} %}
+    {% endfor %}
+  {% endif %}
 
 </head>
