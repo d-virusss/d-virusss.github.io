@@ -12,6 +12,17 @@
     
     
       <item>
+        <title>The_great_gatsby</title>
+        <description>
+          
+          h— layout: post title: 위대한 개츠비 subtitle: 주관적 해석과 느낀점 cover-img: /assets/img/coding.jpg$opacity_0.8 thumbnail-img: /assets/img/thumb.png tags: [art] comments: true — 위대한 개츠비, 나의 해석 (줄거리, 결말에 대한 스포가 포함되어 있을 수 있으니 주의바랍니다.) 글을 시작하며 최근에 영화 ‘위대한 개츠비’를 감상했다. 영화를 보면서 생각했던 것들을 간단하게 글로써 남기고자 한다. 영화를 보기 전...
+        </description>
+        <pubDate>Tue, 10 Mar 2020 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2020-03-10-the_great_gatsby/</link>
+        <guid isPermaLink="true">http://localhost:4000/2020-03-10-the_great_gatsby/</guid>
+      </item>
+    
+      <item>
         <title>블로그를 시작한 계기</title>
         <description>
           드디어 시작..!! - 
