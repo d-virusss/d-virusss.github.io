@@ -980,3 +980,7 @@ pre {
   display: block;
   margin: 0 auto;
 }
+
+.container-md .row{
+  margin-top: 4rem;
+}
