@@ -17,6 +17,14 @@
 <lastmod>2021-03-06T00:00:00+00:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/2021-03-10-the_great_gatsby/</loc>
+<lastmod>2021-03-10T00:00:00+00:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/2021-03-24-date_moment/</loc>
+<lastmod>2021-03-24T00:00:00+00:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/aboutme/</loc>
 </url>
 <url>
@@ -24,5 +32,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/tags/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page2/</loc>
 </url>
 </urlset>
