@@ -12,6 +12,28 @@
     
     
       <item>
+        <title>Bootstrap4 datetimepicker 적용, moment를 사용한 시간정보 전달, Time vs Datetime</title>
+        <description>
+          여러분은 삽질하지 마세요! - 
+          개요 프로젝트에서 구현하는 폼 중 datetime으로 표현해야하는 column이 있었습니다. 사용자한테 시간정보를 입력받아야 했는데, HTML5에서 지원하는 기본 datetimepicker는 너무 구린 거 같아 Bootstrap을 dependency로 한 쓸만한 datetimepicker를 찾아봤습니다. jQuery date_timepicker UI 구려서 OUT Bootstrap 3 Date/Time Picker deprecated 되어 PASS Tempus Dominus git star도 6.8K에 UI도 이쁜데 뭘 잘못했는지 적용이 잘...
+        </description>
+        <pubDate>Wed, 24 Mar 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2021-03-24-date_moment/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021-03-24-date_moment/</guid>
+      </item>
+    
+      <item>
+        <title>위대한 개츠비</title>
+        <description>
+          주관적 해석과 느낀점 - 
+          위대한 개츠비, 나의 해석 (줄거리, 결말에 대한 스포가 포함되어 있을 수 있으니 주의바랍니다.) 글을 시작하며 최근에 영화 ‘위대한 개츠비’를 감상했다. 영화를 보면서 생각했던 것들을 간단하게 글로써 남기고자 한다. 영화를 보기 전 위대한 개츠비, 유명한 소설이다. 고등학교 때 줄글로된 책으로 읽은 적이 있다. 그때는 별 생각없이 소비하듯 책을 읽었기 때문에, 돈...
+        </description>
+        <pubDate>Wed, 10 Mar 2021 00:00:00 +0000</pubDate>
+        <link>http://localhost:4000/2021-03-10-the_great_gatsby/</link>
+        <guid isPermaLink="true">http://localhost:4000/2021-03-10-the_great_gatsby/</guid>
+      </item>
+    
+      <item>
         <title>프로그래머스 2021 상반기 프론트엔드 데브매칭 후기</title>
         <description>
           넘 어렵당.. - 

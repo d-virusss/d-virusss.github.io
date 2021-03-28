@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Beautiful Jekyll 5.0.0 | Copyright Dean Attali 2020 -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="apple-touch-icon" sizes="57x57" href="../assets/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="../assets/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="../assets/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="../assets/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="../assets/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="../assets/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="../assets/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../assets/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../assets/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../assets/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="../assets/img/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  
+
+  
+
+  <title>Bootstrap4 datetimepicker 적용, moment를 사용한 시간정보 전달, Time vs Datetime</title>
+
+  
+  <meta name="author" content="d-virusss">
+  
+
+  <meta name="description" content="여러분은 삽질하지 마세요!">
+
+  
+
+  
+
+  <link rel="alternate" type="application/rss+xml" title="d-virusss" href="http://localhost:4000/feed.xml">
+
+  
+
+  
+
+  
+
+
+  
+    
+      
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
+    
+      
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+
+
+    
+      
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+
+    
+  
+
+  
+    
+      <link rel="stylesheet" href="/assets/css/bootstrap-social.css">
+    
+      <link rel="stylesheet" href="/assets/css/beautifuljekyll.css">
+    
+  
+
+  
+
+  
+  
+  
+
+  
+
+  
+  <meta property="og:site_name" content="d-virusss">
+  <meta property="og:title" content="Bootstrap4 datetimepicker 적용, moment를 사용한 시간정보 전달, Time vs Datetime">
+  <meta property="og:description" content="여러분은 삽질하지 마세요!">
+
+  
+  <meta property="og:image" content="http://localhost:4000/assets/img/2020.03/datetimepicker.png">
+  
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:article:author" content="d-virusss">
+  <meta property="og:article:published_time" content="2021-03-24T00:00:00+00:00">
+  <meta property="og:url" content="http://localhost:4000/2021-03-24-date_moment/">
+  <link rel="canonical" href="http://localhost:4000/2021-03-24-date_moment/">
+  
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <meta name="twitter:site" content="@">
+  <meta name="twitter:creator" content="@">
+
+  <meta property="twitter:title" content="Bootstrap4 datetimepicker 적용, moment를 사용한 시간정보 전달, Time vs Datetime">
+  <meta property="twitter:description" content="여러분은 삽질하지 마세요!">
+
+  
+  <meta name="twitter:image" content="http://localhost:4000/assets/img/2020.03/datetimepicker.png">
+  
+
+  
+
+
+  
+
+  
+
+</head>
+
+
+<body>
+
+  
+
+
+  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom top-nav-regular"><a class="navbar-brand" href="http://localhost:4000/">d-virusss</a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/aboutme">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://d-virusss.github.io">Author's home</a>
+          </li></ul>
+  </div>
+
+  
+
+  
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        <a href="http://localhost:4000/">
+          <img alt="Navigation bar avatar" class="avatar-img" src="/assets/img/avatar-icon.png" />
+        </a>
+      </div>
+    </div>
+  
+
+</nav>
+
+
+  <!-- TODO this file has become a mess, refactor it -->
+
+
+
+
+
+
+
+<header class="header-section ">
+
+<div class="intro-header no-img">
+  <div class="container-md">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+        <div class="post-heading">
+          <h1>Bootstrap4 datetimepicker 적용, moment를 사용한 시간정보 전달, Time vs Datetime</h1>
+          
+            
+              <h2 class="post-subheading">여러분은 삽질하지 마세요!</h2>
+            
+          
+
+          
+            <span class="post-meta">Posted on March 24, 2021</span>
+            
+            
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</header>
+
+
+
+
+
+<div class=" container-md ">
+  <div class="row">
+    <div class=" col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 ">
+
+      
+
+      
+
+      <article role="main" class="blog-post">
+        <h3 id="개요">개요</h3>
+<p>프로젝트에서 구현하는 폼 중 datetime으로 표현해야하는 column이 있었습니다. 사용자한테 시간정보를 입력받아야 했는데, HTML5에서 지원하는 기본 datetimepicker는 너무 구린 거 같아 Bootstrap을 dependency로 한 쓸만한 datetimepicker를 찾아봤습니다.</p>
+
+<ol>
+  <li>
+    <p>jQuery date_timepicker<br />
+UI 구려서 OUT</p>
+  </li>
+  <li>
+    <p>Bootstrap 3 Date/Time Picker<br />
+deprecated 되어 PASS</p>
+  </li>
+  <li>
+    <p>Tempus Dominus<br />
+git star도 6.8K에 UI도 이쁜데 뭘 잘못했는지 적용이 잘 안됐습니다. 그래서 다른 걸 찾아보기로..</p>
+  </li>
+  <li>
+    <p>Bootstrap 4를 지원하는 무명의 Date/Time picker<br />
+UI도 3번과 크게 다르지 않고, option들도 기존 Bootstrap3 위젯과 동일하게 구현되었다고 해서 이걸로 선택<br />
+<a href="https://www.jqueryscript.net/demo/Date-Time-Picker-Bootstrap-4/">데모는 여기서</a></p>
+  </li>
+</ol>
+
+<h3 id="적용-과정">적용 과정</h3>
+<p>1) 소스파일 다운<br />
+이 라이브러리는 cdn이 없어 직접 js, scss를 받아서 폴더에 넣어줘야 합니다.<br />
+<a href="https://www.jqueryscript.net/time-clock/Date-Time-Picker-Bootstrap-4.html">docs 및 다운로드</a> <br /></p>
+
+<p><img width="800" alt="js" src="https://user-images.githubusercontent.com/55905801/112276846-82bf8400-8cc4-11eb-856d-f044ca03e7c8.png" /></p>
+
+<hr />
+
+<p><img width="800" alt="scss two pieces" src="https://user-images.githubusercontent.com/55905801/112277773-6e2fbb80-8cc5-11eb-8be1-89d8bb0ad6e3.png" /></p>
+<hr />
+
+<p>bootstrap-datetimepicker.js JS 파일 한개와 
+_bootstrap-datetimepicker.scss / bootstrap-datetimepicker-build.scss 파일 2개를 각각 옮겨주면 됩니다.</p>
+
+<p><img width="400" alt="ss 63" src="https://user-images.githubusercontent.com/55905801/112278120-d9798d80-8cc5-11eb-9ba6-feaae5133ffa.png" /></p>
+
+<p>2) application.html.erb에 script / stylesheet 추가<br />
+layout 템플릿 파일로서의 역할을 하는 application.html.erb 에 script와 스타일시트를 순서에 맞게 삽입하는 게 가장 중요합니다. 여러 의존성이 얽혀있기 때문에 순서에 맞게 넣어주지 않으면 오류가 생깁니다.<br />
+해당 라이브러리의 docs를 살펴보면(docs라기엔 좀 무성의하지만) 의존성이 설명되어 있는데,<br />
+(1) 부트스트랩<br />
+(2) jQuery<br />
+(3) popper.js<br />
+(4) font-awesome<br />
+(5) moment<br />
+입니다.</p>
+
+<p>보통은</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= javascript_include_tag 'web' %&gt;
+</code></pre></div></div>
+<p>혹은</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;%= javascript_include_tag 'application' %&gt;
+</code></pre></div></div>
+<p>을 통해서 필요한 web.js / application.js 를 로드하는데 이 파일에서 gem으로 설치된 모듈들이</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//=require (module_name)  
+</code></pre></div></div>
+
+<p>이런 방식으로 불려 사용되고 있습니다.
+그 외 cdn으로 가져온 라이브러리들은</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" /&gt;
+</code></pre></div></div>
+
+<p>이런 방식으로 script들이 삽입되어 있을겁니다.
+jQuery를 중복해서 삽입하거나 하지 않게 순서를 잘 맞춰주세요.</p>
+
+<p>저 같은 경우엔 순서가<br />
+(1) fontawesome by CDN<br />
+(2) &lt;%= javascript_include_tag ‘web’ %&gt; 을 통해서 script 삽입</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//= require jquery  
+//= require cocoon  
+//= require popper  
+//= require bootstrap  
+//= require moment  
+//= require moment/ko  
+</code></pre></div></div>
+<p>이런 식으로 되어 있습니다.</p>
+
+<p>js 파일을 삽입한 후에 stylesheet만 삽입해주면 사용할 준비는 끝납니다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    &lt;%= stylesheet_link_tag 'bootstrap-datetimepicker-build' %&gt;
+</code></pre></div></div>
+
+<p>_bootstrap-datetimepicker.scss 파일은 build로 끝나는 scss 에서 @import로 불러와진 후 precompile 되기 때문에 application.html.erb에서 불러주지 않아도 괜찮습니다.</p>
+
+<p>여기서 주의할 점이 프로젝트에 기본으로 jquery 혹은 bootstrap datetimepicker 모듈이 포함되어 있을 수 있습니다. 이런 경우 우리가 이제 적용할 Date / Time Picker 컴포넌트의 스타일이 깨지거나 이상하게 동작할 수 있으므로 다 지워줍니다.</p>
+
+<p><img width="748" alt="ss 64" src="https://user-images.githubusercontent.com/55905801/112280856-c74d1e80-8cc8-11eb-8f03-aa4011122aec.png" /></p>
+
+<p>이런식으로 그냥 date picker든 date_time_picker든 전부 지워줍니다. 어차피 옵션을 통해 time_picker로만, date_picker로만 사용할 수 있습니다.</p>
+
+<p>이렇게 js와 stylesheet를 의존성 순서에 맞게 로드해주면 됩니다.</p>
+
+<p>3) 컴포넌트 적용하기</p>
+
+<p>적용은 간단합니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   &lt;input type="text" class="form-control" id="example"&gt;
+
+   &lt;script&gt;
+   $(function () {
+     $('#example').datetimepicker();
+   });
+   &lt;/script&gt;
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/55905801/112281402-5b1eea80-8cc9-11eb-96ee-f882eff43d58.png" alt="ss 65" /></p>
+
+<p>이렇게 하면 적용됩니다.</p>
+
+<p>제가 진행하는 프로젝트는 한국인 대상이라 날짜 포맷을 한국어로 맞춰줬습니다. 우리가 사용하는 Date / Time Picker 컴포넌트의 format 형식은 moment.js의 포맷형식을 따르는데 moment의 locale의 기본값이 ‘en’이기 때문에 (스마트하게 지역마다 알아서 바꿔주는 줄 알고 삽질..) 혹시 한국어로 시간을 표시하고자 하면 locale을 ‘ko’로 변경해줘야 합니다.</p>
+
+<p>locale을 ‘ko’로 변경하는 방법은</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   //= require moment
+   //= require moment/ko
+</code></pre></div></div>
+<p>web.js 혹은 application.js 에서 위와 같이 불러주시면 됩니다.</p>
+
+<p>moment.js 관련된 포맷은 여기서 확인하시면 됩니다.<br />
+<a href="https://momentjs.com/">moment.js 공식문서</a></p>
+
+<p>처음 docs 들어가면 영어포맷만 보이지만 페이지 밑으로 조금 내리셔서 Korean 태그 클릭해주시면 한국말 format 어떻게 변경하는지 확인할 수 있습니다.</p>
+
+<p>제 코드는 다음과 같은데</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(function (){
+ $(".delivery-datetime").datetimepicker({
+   format: "YYYY-MM-DD dddd a hh:mm",
+   locale: moment.locale(),
+   icons: {
+     time: 'fas fa-clock',
+   }
+ });
+});
+</code></pre></div></div>
+<p>font-awesome이 순서에 맞게 들어가 있음에도 시간 아이콘이 표시되지 않아 이런 방식으로 커스텀 했습니다.</p>
+
+<p>4) Date / Time picker 컴포넌트로 선택한 시간 정보로 ActiveRecord 객체의 datetime 필드 채우기<br />
+   <br />
+    이제 사용자가 입력한 이 시간값을 컨트롤러에서 적절히 받아서 datetime 타입의 column에 잘 저장하기만 하면 됩니다. 저는 프론트 단에서 data를 적절히 조작한다음에 백 단에서는 간단한 로직으로 객체를 생성하는 방법을 선호하기 때문에 사용자가 선택한 시간을 unixtime으로 바꾼 다음 컨트롤러로 보내주는 방법을 생각해봤습니다.</p>
+
+<p>그리고 HTML 5의 기본 date / time picker를 사용하지 않기로 한 이상 f.datefield를 사용하거나 input태그의 type=”datetime-local”을 사용하면 안됩니다.
+HTML 5의 Date / Time picker와 우리가 힘들게 적용한 두 컴포넌트가 동시에 사용되어 버립니다.</p>
+
+<p>그래서 저는 다음과 같은 방법을 사용했습니다.</p>
+
+<h3 id="date--time-picker를-표시할-input태그와-실제로-서버로-params를-보낼-hidden_field를-분리한-다음에-input태그에-이벤트를-걸어두고-값이-변하면-hidden_field에-unixtime으로-바꾼-값을-넣어준다">Date / Time picker를 표시할 input태그와 실제로 서버로 params를 보낼 hidden_field를 분리한 다음에 input태그에 이벤트를 걸어두고 값이 변하면 hidden_field에 unixtime으로 바꾼 값을 넣어준다!</h3>
+<p><br /></p>
+
+<p>(1) 프론트 부분 코드 및 설명</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   &lt;input type="text" class="form-control delivery-datetime" data-target="truck_start_at"&gt;
+</code></pre></div></div>
+<p>이렇게,</p>
+
+<p>실제 요청을 통해 값이 전달되는 부분은</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   &lt;%= f.hidden_field :start_at %&gt;
+</code></pre></div></div>
+
+<p>이렇게 하였습니다.</p>
+
+<p>Event Delegation 방식을 통해 이벤트를 효과적으로 달아줬고, delivery-datetime selector에서 포커스가 사라지게 되면 그 값을 unix_time으로 바꿔 hidden_field의 value로 넣어주는 코드입니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$(document).on('blur', '.delivery-datetime', (e) =&gt; {
+let target_selector = e.target.dataset.target;
+let locale_date = e.target.value;
+let unix_time = (moment(locale_date, "YYYY-MM-DD dddd a hh:mm").valueOf() / 1000);
+$(`#${target_selector}`).val(unix_time);
+});
+</code></pre></div></div>
+
+<p>change 이벤트는 어떤 이유에선지 먹통이였습니다.(분명 개발자 도구로 찍어보면 val은 변하는데 이벤트가 실행이 안됨..) propertychange change keyup paste input blur 이벤트를 시도해봤고, 결국 blur 이벤트를 통해 구현했습니다.</p>
+
+<p>input 태그에 data attribute로 연결시킬 hidden_field의 id값을 넣어뒀습니다. 이 attribute를 사용하여 발생된 이벤트에서 unix time을 전부 계산한다음 값을 갱신해줬습니다.</p>
+
+<p>moment(“<em>사용자가 입력한 값</em>”, “<em>해석할 포맷</em>”).valueOf() 메소드를 사용하면 화면에 표시된 값을 unix time 으로 변경할 수가 있습니다. moment에서는 unixtime을 ms로 표시하는데 우리가 필요한건 초 단위까지이므로 1000으로 나눠줬습니다.</p>
+
+<p>(2) 컨트롤러 부분</p>
+
+<p>컨트롤러 부분에서는 Time.at(unixtime)을 통해 생성한 값을 column에 넣어주면 됩니다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   @truck.start_at = Time.at(params[:truck][:start_at].to_i)
+   @truck.end_at = Time.at(params[:truck][:end_at].to_i)
+   @truck.save
+</code></pre></div></div>
+
+<p>요런 식으로 넣어주면 되는데, Time.at의 매개변수는 반드시 정수여야 하니 .to_i 메소드로 정수로 변환해주세요.</p>
+
+<p>추가로, 기능을 구현하다가 Date와 Time, DateTime의 차이점이 뭔지 궁금해서 검색해봤습니다.
+<a href="https://classmethod.dev/ko/questions/3928275">이 문서</a>를 참조하면 되는데 요약하자면,</p>
+
+<p>Ruby에서 사용하는 Time은 POSIX 표준 time_t 값을 감싸는 래퍼이고<br />
+Datetime은 SQL 표준 datetime필드를 감싸는 래퍼이다.</p>
+
+<p>:timestamp 및 :datetime 필드는 기본적으로 DateTime으로 저장되지만<br />
+:timestamp는 4바이트(1970~2038년), :datetime은 8바이트(1000~9999년 표현가능)를 사용한다.</p>
+
+<blockquote>
+  <p>DB의 column 타입을 결정할 때</p>
+</blockquote>
+
+<p>db 크기를 걱정해야 한다면 :timestamp<br />
+날짜만 저장해도 된다면 :date<br />
+시간만 저장해도 된다면 :time</p>
+
+<blockquote>
+  <p>Ruby에서 시간 객체를 다룰 때</p>
+</blockquote>
+
+<p>Datetime -&gt; 윤초 고려안함(os 따라 다름), 섬머타임 고려 안함, 시간대를 UTC + offset 으로 간단히 표현<br />
+Time -&gt; 윤초 고려함, 섬머타임 고려함</p>
+
+<p>저처럼 unix time을 사용하거나 현재와 멀리 떨어지지 않은 시간을 다룰 거면 Time 객체를, 그 외에는 Datetime을 쓰는 게 좋을 거 같습니다.</p>
+
+<h3 id="마치며">마치며</h3>
+
+<p>date_time picker가 별 거 아닌 거 같은데 적용할 때마다 사소한 부분들 때문에 삽질하게 되서 저도 참고하고 여러분도 보시라고 글로 남겨둡니다. 혹시 프로젝트에 date / time picker 쓰시게 되는 분들은 참고하시면 좋을 거 같습니다.</p>
+
+      </article>
+
+      
+        <div class="blog-tags">
+          <span>Tags:</span>
+          
+            <a href="/tags#rails datetimepicker moment">rails datetimepicker moment</a>
+          
+        </div>
+      
+
+      
+
+      
+        <!-- Check if any share-links are active -->
+
+
+
+
+<section id = "social-share-section">
+  <span class="sr-only">Share: </span>
+
+  
+    <a href="https://twitter.com/intent/tweet?text=Bootstrap4+datetimepicker+%EC%A0%81%EC%9A%A9%2C+moment%EB%A5%BC+%EC%82%AC%EC%9A%A9%ED%95%9C+%EC%8B%9C%EA%B0%84%EC%A0%95%EB%B3%B4+%EC%A0%84%EB%8B%AC%2C+Time+vs+Datetime&url=http%3A%2F%2Flocalhost%3A4000%2F2021-03-24-date_moment%2F"
+      class="btn btn-social-icon btn-twitter" title="Share on Twitter">
+      <span class="fab fa-fw fa-twitter" aria-hidden="true"></span>
+      <span class="sr-only">Twitter</span>
+    </a>
+  
+
+  
+    <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F2021-03-24-date_moment%2F"
+      class="btn btn-social-icon btn-facebook" title="Share on Facebook">
+      <span class="fab fa-fw fa-facebook" aria-hidden="true"></span>
+      <span class="sr-only">Facebook</span>
+    </a>
+  
+
+  
+    <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F2021-03-24-date_moment%2F"
+      class="btn btn-social-icon btn-linkedin" title="Share on LinkedIn">
+      <span class="fab fa-fw fa-linkedin" aria-hidden="true"></span>
+      <span class="sr-only">LinkedIn</span>
+    </a>
+  
+
+  
+
+</section>
+
+
+
+      
+
+      <ul class="pagination blog-pager">
+        
+        <li class="page-item previous">
+          <a class="page-link" href="/2021-03-10-the_great_gatsby/" data-toggle="tooltip" data-placement="top" title="위대한 개츠비">&larr; Previous Post</a>
+        </li>
+        
+        
+      </ul>
+      
+  
+  
+  
+
+  
+
+
+
+
+    </div>
+  </div>
+</div>
+
+
+  <footer>
+  <div class="container-md beautiful-jekyll-footer">
+    <div class="row">
+      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
+      <ul class="list-inline text-center footer-links"><li class="list-inline-item">
+    <a href="/feed.xml" title="RSS">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">RSS</span>
+    </a>
+  </li><li class="list-inline-item">
+    <a href="mailto:jyg0599@gmail.com" title="Email me">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">Email me</span>
+   </a>
+  </li><li class="list-inline-item">
+    <a href="https://github.com/d-virusss" title="GitHub">
+      <span class="fa-stack fa-lg" aria-hidden="true">
+        <i class="fas fa-circle fa-stack-2x"></i>
+        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+      <span class="sr-only">GitHub</span>
+   </a>
+  </li></ul>
+
+      
+      <p class="copyright text-muted">
+      
+        d-virusss
+        &nbsp;&bull;&nbsp;
+      
+      2021
+
+      
+        &nbsp;&bull;&nbsp;
+        <span class="author-site">
+          <a href="http://localhost:4000/">d-virusss.github.io</a>
+        </span>
+      
+
+      
+      </p>
+      <p class="theme-by text-muted">
+        Powered by
+        <a href="https://beautifuljekyll.com">Beautiful Jekyll</a>
+      </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  
+  
+    
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+
+  
+    
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  
+
+
+
+  
+    <!-- doing something a bit funky here because I want to be careful not to include JQuery twice! -->
+    
+      <script src="/assets/js/beautifuljekyll.js"></script>
+    
+  
+
+
+
+
+
+
+
+
+
+</body>
+</html>
